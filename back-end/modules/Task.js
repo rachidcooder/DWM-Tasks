@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const taskSchema=mongoose.Schema({
+  user:{type :mongoose.Schema.Types.ObjectId,ref:"User",required:true},
   tasktext :{type :String ,required :true},
   typetask :{type :String ,required :true , 
     enum: ['day', 'week', 'month'] },
@@ -8,5 +9,4 @@ const taskSchema=mongoose.Schema({
 })
 
  
-
 export default mongoose.model('Task',taskSchema);

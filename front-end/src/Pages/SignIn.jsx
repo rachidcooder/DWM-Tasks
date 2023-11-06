@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {AiFillGoogleCircle} from 'react-icons/ai'
  import {signInRoute} from '../Routes/Routes.js'
@@ -20,6 +20,11 @@ function SignIn() {
     draggable: true,
     theme: "dark",
   };
+
+  useEffect(()=>{
+    const token=localStorage.getItem('token');
+     if(token) navigate('/home');
+  },[]);
 
 
   function getRandomInt(min, max) {
@@ -54,7 +59,7 @@ function SignIn() {
   }
     
   return (
-       <div className='maw-w-[1640px] p-4 flex justify-center'>
+       <div className='maw-w-[1640px] p-4 flex justify-center pt-12'>
       <div className=' bg-slate-100 flex p-2 flex-col rounded-md shadow-2xl' >
          <h1 className='text-xl font-bold text-center p-2'>Sign in</h1>
         <div className='flex flex-col'>

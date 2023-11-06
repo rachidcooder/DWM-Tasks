@@ -3,9 +3,8 @@ import Task from '../modules/Task.js'
 
 
 export const getTasks=async(req,res)=>{ 
- 
    try{
-    const tasks =await Task.find();
+    const tasks = await Task.find({ user: req.user._id });
      res.status(200).json({tasks});
    }catch(err){
      console.log(err);
@@ -14,13 +13,12 @@ export const getTasks=async(req,res)=>{
 }
 
 export const AddTask=async(req,res)=>{
-
  const {tasktext,typetask}=req.body;
 
      if(!tasktext||!typetask)
           return   res.status(401).json({message :"Some field Empty !"}) ;
   try{
-      const taskTopic =await Task.create({
+      const taskTopic =await Task.create({user:req.user._id,
         tasktext,typetask
       })
 

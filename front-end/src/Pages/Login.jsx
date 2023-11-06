@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState ,useEffect} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {AiFillGoogleCircle} from 'react-icons/ai'
  import {loginRoute} from '../Routes/Routes.js'
@@ -9,6 +9,12 @@ function Login() {
   const [email,setEmail]=useState('');
   const [password,setPassword]=useState('');
  const navigate=useNavigate();
+
+ useEffect(()=>{
+    const token=localStorage.getItem('token');
+     if(token) navigate('/home');
+  },[]);
+  
  const OnLogin=async()=>{
     if(!password||!email){
          toast.error("some fields are empty !",toastOptions);
@@ -31,7 +37,7 @@ function Login() {
 
  }
   return (
-    <div className='maw-w-[1640px] p-4 flex justify-center'>
+    <div className='maw-w-[1640px] p-4 flex justify-center pt-12'>
       <div className=' bg-slate-100 flex p-2 flex-col rounded-md shadow-2xl' >
          <h1 className='text-xl font-bold text-center p-2'>Log in</h1>
         <div className='flex flex-col'>
@@ -52,11 +58,10 @@ function Login() {
                </button>
 
                  <div className='flex flex-row'>
-                 <button className='w-full rounded-xl font-semibold bg-slate-400 m-1 mt-2 py-1 hover:bg-slate-600'>
-                   Guess 
-                 </button>
+                
                  <button className='w-full ps-3 flex  rounded-xl font-semibold text-center  bg-slate-400 m-1 mt-2 py-1 hover:bg-slate-600'>
-                   Google   <AiFillGoogleCircle size={25} className='mx-2 text-center'/>
+                     <AiFillGoogleCircle size={25} className='mx-2 text-center'/>
+                      Login with Google
                  </button>
                 </div>
                 

@@ -4,7 +4,6 @@ import {AiFillDelete} from 'react-icons/ai'
 import {deleteTskRoute,updatTskeRoute} from '../Routes/Routes.js'
 
 function TodoItem({list,setList}) {
-const[ischeched,setIschecked]=useState(false);
  
   const OnDelete=async(id)=>{
   
@@ -24,6 +23,7 @@ const[ischeched,setIschecked]=useState(false);
     }
   }
 }
+
 const Donne=async(id)=>{
   
  const token=localStorage.getItem('token');

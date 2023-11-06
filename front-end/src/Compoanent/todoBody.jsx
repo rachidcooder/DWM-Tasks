@@ -6,9 +6,16 @@ import TodoItem from './TodoItem';
 import ToAddItem from './ToAddItem';
 import {getTskRoute} from '../Routes/Routes.js'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 function todoBody() {
-   const [istoAdd,setIsToadd]=useState(false);
-     const [dataList, setDataList] = useState([]); 
+  const [istoAdd,setIsToadd]=useState(false);
+  const[dayList,setDayList]=useState([]);
+  const[weekList,setWeekList]=useState([]);
+  const[monthList,setmonthList]=useState([]);
+  const[addedTask,setAddedTask]=useState("0");
+const navigat=useNavigate();
+
+
    useEffect(()=>{
       const getTasks=async()=>{
            try{
@@ -21,7 +28,24 @@ function todoBody() {
        };
        
    const res = await axios.get(getTskRoute,config);
-        setDataList(res.data.tasks);
+    const ls=res.data.tasks;
+
+     setDayList(
+       ls.filter((item)=>{
+        return item.typetask==='day';
+       })
+     ) 
+      setWeekList(
+       ls.filter((item)=>{
+        return item.typetask==='week';
+       })
+     ) 
+      setmonthList(
+       ls.filter((item)=>{
+        return item.typetask==='month';
+       })
+     ) 
+
     }
     }catch(err){
       console.log(err);
@@ -29,42 +53,21 @@ function todoBody() {
        }
   
 getTasks();
-   },[]);
+   },[addedTask]);
 
-  
-
-  //   datList=[
-  //   {
-  //      id:"1d",
-  //     ischeched:false,
-  //     task :"viste a friend",
-  //   },
-  //     {
-  //      id:"2d",
-  //     ischeched:false,
-  //     task :"do some exercises",
-  //   },
-  //     {
-  //      id:"3d",
-  //     ischeched:false,
-  //     task :"sport",
-  //   },
-  //     {
-  //      id:"4d",
-  //     ischeched:true,
-  //     task :"read",
-  //   }
-    
-  //  ];
-   
-
+ useEffect(()=>{
+  const t=localStorage.getItem('token');
+   if(!t)
+      navigat('/login');
+ },[])
    const tabs = [
     {
       id: 1,
       label: 'Day',
       content: (
         <div > 
-          <TodoItem list={dataList} setList={setDataList}/>
+
+         <TodoItem list={dayList} setList={setDayList}/>
         </div>
       ),
     },
@@ -73,7 +76,7 @@ getTasks();
       label: 'Week',
       content: (
           <div > 
-          <TodoItem list={dataList} setList={setDataList}/>
+          <TodoItem list={weekList} setList={setWeekList}/>
         </div>
       ),
     },
@@ -82,7 +85,7 @@ getTasks();
       label: 'Month',
       content: (
      <div > 
-          <TodoItem list={dataList} setList={setDataList}/>
+          <TodoItem list={monthList} setList={setmonthList}/>
         </div>
       ),
     },
@@ -98,7 +101,7 @@ getTasks();
      </div>:"" }
 
 { istoAdd? <div className='fixed top-0 left-0 w-full p-4 flex  justify-center z-10'> 
- <ToAddItem setIsToadd={setIsToadd}/>
+ <ToAddItem setIsToadd={setIsToadd} setAddedTask={setAddedTask}/>
  </div>:""}
 
 </div>

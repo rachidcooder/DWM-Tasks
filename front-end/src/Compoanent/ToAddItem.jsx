@@ -3,9 +3,9 @@ import React, { useState } from 'react'
 import {FaWindowClose} from 'react-icons/fa'
 import {AddTskRoute} from '../Routes/Routes.js'
 
-function ToAddItem({setIsToadd}) {
+function ToAddItem({setIsToadd,setAddedTask}) {
   const[tasktext,setTaslText]=useState("");
-  const[typetask,setTaskType]=useState("");
+  const[typetask,setTaskType]=useState("day");
 
   const onAddtask=async()=>{
      setIsToadd(false)
@@ -20,7 +20,10 @@ function ToAddItem({setIsToadd}) {
             tasktext,typetask
       },config);
 
-        console.log(res);
+       if(res){
+        setAddedTask("1");
+       }
+
     }catch(err){
       console.log(err);
     }
@@ -43,7 +46,6 @@ function ToAddItem({setIsToadd}) {
        <div className='py-2 p-2 flex flex-row '>
         <label className='text-xl text-gray-600 p-1'>This Task For : </label>
          <select className=' bg-slate-200 text-xl rounded-md outline-none  py-1 mx-2'
-          value={tasktext}
          onChange={(e)=>{setTaskType(e.target.value)}}
          >
            <option>day</option>
