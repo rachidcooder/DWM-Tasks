@@ -51,7 +51,6 @@ const navigat=useNavigate();
       console.log(err);
      }
        }
-  
 getTasks();
    },[addedTask]);
 

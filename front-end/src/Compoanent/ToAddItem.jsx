@@ -19,11 +19,8 @@ function ToAddItem({setIsToadd,setAddedTask}) {
       const res= await axios.post(AddTskRoute,{
             tasktext,typetask
       },config);
-
-       if(res){
-        setAddedTask("1");
-       }
-
+      const randomFloat = Math.random()
+        setAddedTask(randomFloat);
     }catch(err){
       console.log(err);
     }
