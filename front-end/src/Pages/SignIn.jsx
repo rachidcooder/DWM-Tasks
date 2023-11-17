@@ -93,9 +93,6 @@ function SignIn() {
                   onClick={()=>{RegisterGusse()}}>
                    Guess 
                  </button>
-                 <button className='w-full ps-3 flex  rounded-xl font-semibold text-center  bg-slate-400 m-1 mt-2 py-1 hover:bg-slate-600'>
-                   Google   <AiFillGoogleCircle size={25} className='mx-2 text-center'/>
-                 </button>
                 </div>
 
 

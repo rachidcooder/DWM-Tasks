@@ -57,13 +57,6 @@ function Login() {
                  Login 
                </button>
 
-                 <div className='flex flex-row'>
-                
-                 <button className='w-full ps-3 flex  rounded-xl font-semibold text-center  bg-slate-400 m-1 mt-2 py-1 hover:bg-slate-600'>
-                     <AiFillGoogleCircle size={25} className='mx-2 text-center'/>
-                      Login with Google
-                 </button>
-                </div>
                 
                <span className='text-xl text-gray-600'>
                 you don't have account ? <Link  className=" font-bold text-gray-900" to={'/'}>Sign in</Link>
