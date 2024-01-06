@@ -1,4 +1,4 @@
-const host = 'https://onlay-shop-api.onrender.com/api'
+const host = 'https://dwm-tasks-api.onrender.com/api'
 
 export const signInRoute = `${host}/user/sign-in`;
 export const loginRoute = `${host}/user/login`;
